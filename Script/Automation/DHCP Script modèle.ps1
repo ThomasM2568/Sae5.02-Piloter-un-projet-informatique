@@ -1,0 +1,1 @@
+﻿Add-DhcpServerV4Scope -Name "QUALITE" -StartRange "192.168.180.10" -EndRange "192.168.180.200" -SubnetMask "255.255.255.0" -State Active
