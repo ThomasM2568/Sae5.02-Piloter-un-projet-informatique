@@ -1,18 +1,25 @@
 import csv
 import mysql.connector
 from mysql.connector import Error
+import yaml
 
 #------------------------------------------------------------
-#                        Database format
+#                    Database Data
 #------------------------------------------------------------
 
-config = {
-    'user': 'votre_utilisateur',
-    'password': 'votre_mot_de_passe',
-    'host': 'votre_serveur_mysql',
-    'database': 'votre_base_de_donnees',
-    'raise_on_warnings': True
-}
+with open("config.yml", "r") as fichier_yaml:
+    config = yaml.safe_load(fichier_yaml)
+
+try:
+    connection = mysql.connector.connect(
+            user=config['database']['user'],
+            password=config['database']['password'],
+            host=config['database']['host'],
+            database=config['database']['name'],
+            raise_on_warnings=config['database']['raise_on_warnings']
+        )
+except:
+    pass
 
 #------------------------------------------------------------
 #                        Opening file
