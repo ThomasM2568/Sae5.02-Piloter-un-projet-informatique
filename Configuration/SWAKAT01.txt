@@ -1,0 +1,198 @@
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname SWAKAT01
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+!
+no aaa new-model
+switch 1 provision ws-c3750-24p
+system mtu routing 1500
+!
+!
+!
+
+SWAKAT01#show run
+Building configuration...
+
+Current configuration : 3934 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname SWAKAT01
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+!
+no aaa new-model
+switch 1 provision ws-c3750-24p
+system mtu routing 1500
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-3400351232
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3400351232
+ revocation-check none
+ rsakeypair TP-self-signed-3400351232
+!
+!
+crypto pki certificate chain TP-self-signed-3400351232
+ certificate self-signed 01
+  30820241 308201AA A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 33343030 33353132 3332301E 170D3933 30333031 30303031
+  34325A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 34303033
+  35313233 3230819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100DF06 E287852A 2279FDBB 1E1F2AA5 147098AA BDE53A2B 01976730 464093B3
+  77C9B686 C9CFCC61 4F0F84AB 2CB7AC01 57280390 9A3E9E49 DF3F7B2B 94B8DD02
+  AD65432B 8BBC42E8 A04F9F08 302CB540 791948FB 3CE6E834 85455158 29D001A4
+  EEAC962C 462345EB 33034BB1 CC311123 22FC33D7 EAC9AFCA 603077BF 47E7E26B
+  1DFD0203 010001A3 69306730 0F060355 1D130101 FF040530 030101FF 30140603
+  551D1104 0D300B82 09535741 4B415430 312E301F 0603551D 23041830 168014A6
+  FD7BB772 0B396DEE EB16D1D4 9FFD45C5 CA0E7630 1D060355 1D0E0416 0414A6FD
+  7BB7720B 396DEEEB 16D1D49F FD45C5CA 0E76300D 06092A86 4886F70D 01010405
+  00038181 00D57D23 B155EA7F 2AA52181 C53D2337 1EF0743A BF4660D0 20D49DC9
+  FD59A62E 1137C2E0 4CEEF3DF C41C4C28 63A276DE 406DB758 FEA0A5C4 AF217BAA
+  515ACAF2 AF536242 E1BC9F98 5A8A8666 EF10F4C5 2827FB60 4F5AA8B2 19061F14
+  0B719BAA 06BAF4E3 B45A278E 799EFD8E D22050C7 32BBEE79 0DE1736C 737E59CF
+  AB42CC89 31
+  quit
+!
+!
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+spanning-tree vlan 1,10,20,30,40,50,60,90 priority 24576
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+interface FastEthernet1/0/1
+ description Vers RAKAT01
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10,20,30,40,50,60,90
+ switchport mode trunk
+!
+interface FastEthernet1/0/2
+!
+interface FastEthernet1/0/3
+ description Vers RAKAT02
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10,20,30,40,50,60,90
+ switchport mode trunk
+!
+interface FastEthernet1/0/4
+!
+interface FastEthernet1/0/5
+!
+interface FastEthernet1/0/6
+!
+interface FastEthernet1/0/7
+!
+interface FastEthernet1/0/8
+!
+interface FastEthernet1/0/9
+!
+interface FastEthernet1/0/10
+!
+interface FastEthernet1/0/11
+ description Vers SWAKAT02
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10,20,30,40,50,60,90
+ switchport mode trunk
+!
+interface FastEthernet1/0/12
+!
+interface FastEthernet1/0/13
+ description Vers WAKAT01
+ switchport access vlan 90
+ switchport mode access
+!
+interface FastEthernet1/0/14
+!
+interface FastEthernet1/0/15
+!
+interface FastEthernet1/0/16
+!
+interface FastEthernet1/0/17
+!
+interface FastEthernet1/0/18
+!
+interface FastEthernet1/0/19
+!
+interface FastEthernet1/0/20
+!
+interface FastEthernet1/0/21
+!
+interface FastEthernet1/0/22
+!
+interface FastEthernet1/0/23
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10,20,30,40,50,60,90
+ switchport mode trunk
+!
+interface FastEthernet1/0/24
+!
+interface GigabitEthernet1/0/1
+!
+interface GigabitEthernet1/0/2
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan10
+ ip address 10.0.10.3 255.255.255.0
+!
+interface Vlan20
+ no ip address
+!
+interface Vlan30
+ no ip address
+!
+interface Vlan40
+ no ip address
+!
+interface Vlan50
+ no ip address
+!
+interface Vlan60
+ no ip address
+!
+interface Vlan90
+ no ip address
+!
+ip classless
+ip http server
+ip http secure-server
+!
+!
+!
+!
+!
+line con 0
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+end
