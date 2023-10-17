@@ -7,7 +7,7 @@ import yaml
 #                    Database Data
 #------------------------------------------------------------
 
-with open("config.yml", "r") as fichier_yaml:
+with open("config_db.yml", "r") as fichier_yaml:
     config = yaml.safe_load(fichier_yaml)
 
 try:
