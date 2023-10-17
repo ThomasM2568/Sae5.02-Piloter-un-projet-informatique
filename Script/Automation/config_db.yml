@@ -1,0 +1,6 @@
+database:
+  user: "user"
+  password: "pass"
+  host: "127.0.0.1"
+  name: "Hopital"
+  raise_on_warnings: true
