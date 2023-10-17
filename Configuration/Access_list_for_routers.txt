@@ -1,0 +1,33 @@
+ip access-list extended DNS-ACL
+permit udp 10.0.0.0 0.0.255.255 ip 10.0.50.0 0.0.0.3 eq 53
+
+ip access-list extended CARD-ACCESS-ACL
+permit tcp 10.0.90.10 0.0.0.15 host 10.0.90.200 eq 1883
+permit tcp 10.0.90.10 0.0.0.15 host 10.0.90.200 eq 8883
+permit tcp 10.0.90.10 0.0.0.15 host 10.0.90.201 eq 1883
+permit tcp 10.0.90.10 0.0.0.15 host 10.0.90.201 eq 8883
+permit tcp 10.0.90.10 0.0.0.15 host 10.0.90.202 eq 1883
+permit tcp 10.0.90.10 0.0.0.15 host 10.0.90.202 eq 8883
+permit tcp 10.0.90.10 0.0.0.15 host 10.0.90.1 eq 1883
+permit tcp 10.0.90.10 0.0.0.15 host 10.0.90.1 eq 8883
+permit tcp 10.0.90.10 0.0.0.15 host 10.0.90.2 eq 1883
+permit tcp 10.0.90.10 0.0.0.15 host 10.0.90.2 eq 8883
+permit tcp 10.0.90.10 0.0.0.15 host 10.0.90.3 eq 1883
+permit tcp 10.0.90.10 0.0.0.15 host 10.0.90.3 eq 8883
+
+ip access-list extended WEB-SRV-ACL
+permit ip 10.0.20.0 0.0.0.3 ip 10.0.50.0 0.0.0.3
+permit ip 10.0.20.0 0.0.0.3 host 10.0.50.3
+permit host 10.0.20.254 ip 10.0.50.0 0.0.0.3
+permit host 10.0.20.254 host 10.0.50.3
+permit host 10.0.1.248 ip 10.0.50.0 0.0.0.3
+permit host 10.0.1.248 host 10.0.50.3
+
+ip access-list extended ADMIN-ACL
+permit host 10.0.1.110 ip 10.0.1.0 0.0.0.7
+permit host 10.0.1.111 ip 10.0.1.0 0.0.0.7
+permit host 10.0.1.112 ip 10.0.1.0 0.0.0.7
+permit host 10.0.1.113 ip 10.0.1.0 0.0.0.7
+
+ip access-list extended DENY-IMPLICIT
+deny ip any any
