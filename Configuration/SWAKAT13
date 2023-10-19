@@ -1,0 +1,167 @@
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname SWAKAT13
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+!
+no aaa new-model
+switch 1 provision ws-c3750-24p
+system mtu routing 1500
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-3095797120
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3095797120
+ revocation-check none
+ rsakeypair TP-self-signed-3095797120
+!
+!
+crypto pki certificate chain TP-self-signed-3095797120
+ certificate self-signed 01
+  30820241 308201AA A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 33303935 37393731 3230301E 170D3933 30333031 30303031
+  34315A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 30393537
+  39373132 3030819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100D095 6D4B29D8 C6FD57B0 8B2054C4 75948042 DB7963D8 6DEA46BA D6C10642
+  D7A46641 0623B8C4 73955D8A 552F886C D1A2F142 2BB1A04C 433814BF 653403CC
+  71D20CB8 144554D4 3E78E9AA A66A5999 A9FEF272 66AEE14F C0596453 35339E93
+  1A872D42 D54DDBEC 3965ADF0 E9BA757A 2FF00602 3E49429E BBE474DC CDB87DE0
+  73CB0203 010001A3 69306730 0F060355 1D130101 FF040530 030101FF 30140603
+  551D1104 0D300B82 09535741 4B415430 332E301F 0603551D 23041830 168014FE
+  5119EF4E F37EC5B2 3A74CD9F A8BB3FC4 782C5730 1D060355 1D0E0416 0414FE51
+  19EF4EF3 7EC5B23A 74CD9FA8 BB3FC478 2C57300D 06092A86 4886F70D 01010405
+  00038181 0023A43A AB6964F7 FFD74E74 DF443AF3 44E49EB2 A5573B87 A9D16725
+  B47D3A4F C8FFF6B9 0EA2B9EA D769BFAB C81F1F9E 4D320A3D 6A81E0DB 9B9F6B76
+  39BBA6B2 45EBCAE0 C119DCC2 9A44F5A3 88B057F1 2F545DFA 505FD39F B74A9C1F
+  CE8A2EEB 30F75E87 5B743C84 F20C03E0 552D888E B60B1352 57B7858F 7DE70A3D
+  597A78B8 AE
+  quit
+!
+!
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+interface FastEthernet1/0/1
+ description Vers SWAKAT12
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10,20,30,40,50,60,90
+ switchport mode trunk
+!
+interface FastEthernet1/0/2
+!
+interface FastEthernet1/0/3
+!
+interface FastEthernet1/0/4
+!
+interface FastEthernet1/0/5
+!
+interface FastEthernet1/0/6
+!
+interface FastEthernet1/0/7
+!
+interface FastEthernet1/0/8
+!
+interface FastEthernet1/0/9
+!
+interface FastEthernet1/0/10
+!
+interface FastEthernet1/0/11
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet1/0/12
+!
+interface FastEthernet1/0/13
+!
+interface FastEthernet1/0/14
+!
+interface FastEthernet1/0/15
+!
+interface FastEthernet1/0/16
+!
+interface FastEthernet1/0/17
+!
+interface FastEthernet1/0/18
+!
+interface FastEthernet1/0/19
+!
+interface FastEthernet1/0/20
+!
+interface FastEthernet1/0/21
+!
+interface FastEthernet1/0/22
+!
+interface FastEthernet1/0/23
+ description Vers SWAKAT11
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10,20,30,40,50,60,90
+ switchport mode trunk
+!
+interface FastEthernet1/0/24
+!
+interface GigabitEthernet1/0/1
+!
+interface GigabitEthernet1/0/2
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan10
+ ip address 10.1.10.5 255.255.255.0
+!
+interface Vlan20
+ no ip address
+!
+interface Vlan30
+ no ip address
+!
+interface Vlan40
+ no ip address
+!
+interface Vlan50
+ no ip address
+!
+interface Vlan60
+ no ip address
+!
+interface Vlan90
+ no ip address
+!
+interface Vlan204
+ no ip address
+ shutdown
+!
+ip classless
+ip http server
+ip http secure-server
+!
+!
+!
+!
+!
+line con 0
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+end
