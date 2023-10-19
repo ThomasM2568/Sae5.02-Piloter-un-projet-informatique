@@ -1,0 +1,173 @@
+version 15.1
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname RAKAT12
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+no ipv6 cef
+ip source-route
+ip cef
+!
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+crypto pki token default removal timeout 0
+!
+!
+license udi pid CISCO1941/K9 sn FCZ1637C38G
+license accept end user agreement
+license boot module c1900 technology-package securityk9
+license boot module c1900 technology-package datak9
+!
+!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Embedded-Service-Engine0/0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet0/0
+ description Vers SWAKAT01
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 10.1.10.2 255.255.255.0
+ ip helper-address 10.1.50.1
+ standby 10 ip 10.1.10.254
+ standby 10 priority 110
+ standby 10 preempt
+!
+interface GigabitEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 10.1.20.253 255.255.255.0
+ ip helper-address 10.1.50.1
+ standby 20 ip 10.1.20.254
+ standby 20 priority 110
+ standby 20 preempt
+!
+interface GigabitEthernet0/0.30
+ encapsulation dot1Q 30
+ ip address 10.1.30.253 255.255.255.0
+ ip helper-address 10.1.50.1
+ standby 30 ip 10.1.30.254
+ standby 30 priority 110
+ standby 30 preempt
+!
+interface GigabitEthernet0/0.40
+ ip helper-address 10.1.50.1
+!
+interface GigabitEthernet0/0.50
+ encapsulation dot1Q 50
+ ip address 10.1.50.253 255.255.255.0
+ ip helper-address 10.1.50.1
+ standby 50 ip 10.1.50.254
+ standby 50 priority 110
+ standby 50 preempt
+!
+interface GigabitEthernet0/0.60
+ encapsulation dot1Q 60
+ ip address 10.1.60.253 255.255.255.0
+ ip helper-address 10.1.50.1
+ standby 60 ip 10.1.60.254
+ standby 60 priority 110
+ standby 60 preempt
+!
+interface GigabitEthernet0/0.90
+ encapsulation dot1Q 90
+ ip address 10.1.90.253 255.255.255.0
+ ip helper-address 10.1.50.1
+ standby 90 ip 10.1.90.254
+ standby 90 priority 110
+ standby 90 preempt
+!
+interface GigabitEthernet0/1
+ description Vers FWAKAT01
+ ip address 10.1.1.250 255.255.255.0
+ standby 1 ip 10.1.1.251
+ standby 1 priority 110
+ standby 1 preempt
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0/0
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/1/0
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+router ospf 1
+ redistribute connected
+ redistribute static
+ network 10.1.1.0 0.0.0.255 area 0
+ network 10.1.10.1 0.0.0.255 area 0
+ network 10.1.20.0 0.0.0.255 area 0
+ network 10.1.30.0 0.0.0.255 area 0
+ network 10.1.40.0 0.0.0.255 area 0
+ network 10.1.50.0 0.0.0.255 area 0
+ network 10.1.60.0 0.0.0.255 area 0
+ network 10.1.90.0 0.0.0.255 area 0
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+line con 0
+line aux 0
+line 2
+ no activation-character
+ no exec
+ transport preferred none
+ transport input all
+ transport output lat pad telnet rlogin lapb-ta mop udptn v120 ssh
+ stopbits 1
+line vty 0 4
+ login
+ transport input all
+!
+scheduler allocate 20000 1000
+end
