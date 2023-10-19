@@ -9,32 +9,7 @@ hostname SWAKAT01
 boot-start-marker
 boot-end-marker
 !
-!
-!
-!
-no aaa new-model
-switch 1 provision ws-c3750-24p
-system mtu routing 1500
-!
-!
-!
-
-SWAKAT01#show run
-Building configuration...
-
-Current configuration : 3934 bytes
-!
-version 12.2
-no service pad
-service timestamps debug datetime msec
-service timestamps log datetime msec
-no service password-encryption
-!
-hostname SWAKAT01
-!
-boot-start-marker
-boot-end-marker
-!
+enable password SAE502akat
 !
 !
 !
