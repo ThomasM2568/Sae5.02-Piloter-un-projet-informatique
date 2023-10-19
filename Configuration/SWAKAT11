@@ -1,0 +1,130 @@
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname SWAKAT11
+!
+boot-start-marker
+boot-end-marker
+!
+enable password SAE502akat
+!
+username tprt password 0 tprt
+!
+!
+no aaa new-model
+switch 1 provision ws-c3750v2-24ts
+system mtu routing 1536
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+spanning-tree vlan 1,10,20,30,40,50,60,90 priority 24576
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+interface FastEthernet1/0/1
+ description Vers RAKAT01
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10,20,30,40,50,60,90
+ switchport mode trunk
+!
+interface FastEthernet1/0/2
+!
+interface FastEthernet1/0/3
+ description Vers RAKAT02
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10,20,30,40,50,60,90
+ switchport mode trunk
+!
+interface FastEthernet1/0/4
+!
+interface FastEthernet1/0/5
+!
+interface FastEthernet1/0/6
+!
+interface FastEthernet1/0/7
+!
+interface FastEthernet1/0/8
+!
+interface FastEthernet1/0/9
+!
+interface FastEthernet1/0/10
+!
+interface FastEthernet1/0/11
+ description Vers SWAKAT12
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10,20,30,40,50,60,90
+ switchport mode trunk
+!
+interface FastEthernet1/0/12
+!
+interface FastEthernet1/0/13
+ description Vers WAKAT01
+ switchport access vlan 90
+ switchport mode access
+!
+interface FastEthernet1/0/14
+!
+interface FastEthernet1/0/15
+!
+interface FastEthernet1/0/16
+!
+interface FastEthernet1/0/17
+!
+interface FastEthernet1/0/18
+!
+interface FastEthernet1/0/19
+ switchport access vlan 50
+ switchport mode access
+ shutdown
+!
+interface FastEthernet1/0/20
+!
+interface FastEthernet1/0/21
+!
+interface FastEthernet1/0/22
+!
+interface FastEthernet1/0/23
+ switchport trunk encapsulation dot1q
+ switchport trunk allowed vlan 1,10,20,30,40,50,60,90
+ switchport mode trunk
+!
+interface FastEthernet1/0/24
+ switchport access vlan 10
+ switchport mode access
+!
+interface GigabitEthernet1/0/1
+!
+interface GigabitEthernet1/0/2
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan10
+ ip address 10.1.10.3 255.255.255.0
+!
+ip classless
+ip http server
+ip http secure-server
+!
+!
+!
+!
+!
+line con 0
+line vty 5 15
+!
+end
