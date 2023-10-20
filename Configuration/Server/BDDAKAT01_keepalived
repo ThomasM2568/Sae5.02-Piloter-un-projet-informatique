@@ -1,0 +1,10 @@
+vrrp_instance VI_2 {
+        state MASTER
+        interface enp0s8 //Changer la carte si besoin
+        virtual_router_id 52
+        priority 100
+        advert_int 1
+        virtual_ipaddress {
+                10.0.50.5/24
+        }
+}
