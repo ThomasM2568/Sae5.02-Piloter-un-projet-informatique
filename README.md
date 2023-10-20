@@ -3,7 +3,7 @@
 # ----------------------------------------------
 
 # Le projet consiste à sécuriser au mieux le système informatique d’un hôpital. En effet, les hôpitaux sont souvent la cible d’attaque cyber consistant à rançonner l’établissement en lui bloquant son système informatique et en supprimant les données 
-# médicales #et administratives. La conséquence grave est d’interrompre les soins et d’empêcher les opérations urgentes, en effaçant l’accès aux dossiers médicaux contenant principalement des analyses biologiques, l’imagerie médicale, la consultation des
+# médicales et administratives. La conséquence grave est d’interrompre les soins et d’empêcher les opérations urgentes, en effaçant l’accès aux dossiers médicaux contenant principalement des analyses biologiques, l’imagerie médicale, la consultation des
 # traitements et #les conclusions et analyses des spécialistes.
 # Les données médicales volées ont une valeur financière importante à la revente sur le black market.
 
