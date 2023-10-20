@@ -26,7 +26,8 @@ except:
 #                      & MariaDB connexion
 #------------------------------------------------------------
 
-fichier_csv = 'db.csv'
+#fichier_csv = 'db.csv'
+fichier_csv = config['database']['dbname']
 
 try:
     connection = mysql.connector.connect(**config)
