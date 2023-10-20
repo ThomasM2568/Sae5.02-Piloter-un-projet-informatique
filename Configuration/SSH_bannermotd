@@ -1,0 +1,45 @@
+! Configuration du banner motd
+banner motd ^C
+                                                                                
+                                          ,*.                                   
+                                      .,*,.   #.                                
+                               ,/.             #,                               
+                         ,  ,,   *#(           .#       *                       
+                          ,          .#(        #,     //.                      
+                        .*               ((   (###(  .////.                     
+                     ,.                     #/.###.   ,/                        
+                    ,/                        (##,  ./.   .                     
+                     //                        ,##*/.      ,                    
+                       *//.                    ##//#     /,                     
+                        ,  .*///////        //(#   ,#(/.                        
+                        *       ///   .*///*,*#.     ##                         
+                        .//.    ./////      ,#      / #,                        
+                               ,           (#   */    #(                        
+                                 *  *////##/*   .,,,((.                         
+                                   (((##(                                       
+                                                                                
+                                                                                
+                        (.    .###  ##/     ,(     ########(                    
+                       (.#.    .#  (       ,,#(       ,#                        
+                      (  .#.   .#/#       .,  (/      ,#                        
+                     (    .#.  .#  *#.   ,*    #(     ,#                        
+                    ##.   ,##/.###  (##/(#(    ###   ,###      
+
+         * Access reserved only to authorized network administrators *
+                           * Access Reserved *
+                                                                                
+
+^C
+
+! Création de 4 comptes administratifs
+username Kyllian privilege 15 secret Kyllian
+username Arnaud privilege 15 secret Arnaud
+username Alexandre privilege 15 secret Alexandre
+username Thomas privilege 15 secret Thomas
+
+! Configuration SSH
+ip ssh version 2
+crypto key generate rsa usage-keys label SSH-KEY modulus 2048
+line vty 0 15
+ transport input ssh
+ login local
