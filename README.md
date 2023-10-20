@@ -1,11 +1,13 @@
 # SAÉ 5.02 Piloter un projet informatique
 ## Kyllian Cuevas, Arnaud Kastner, Alexandre Berot-Armand, Thomas Mirbey
-----------------------------------------------
+# ----------------------------------------------
 
-#Le projet consiste à sécuriser au mieux le système informatique d’un hôpital. En effet, les hôpitaux sont souvent la cible d’attaque cyber consistant à rançonner l’établissement en lui bloquant son système informatique et en supprimant les données médicales #et administratives. La conséquence grave est d’interrompre les soins et d’empêcher les opérations urgentes, en effaçant l’accès aux dossiers médicaux contenant principalement des analyses biologiques, l’imagerie médicale, la consultation des traitements et #les conclusions et analyses des spécialistes.
-#Les données médicales volées ont une valeur financière importante à la revente sur le black market.
+# Le projet consiste à sécuriser au mieux le système informatique d’un hôpital. En effet, les hôpitaux sont souvent la cible d’attaque cyber consistant à rançonner l’établissement en lui bloquant son système informatique et en supprimant les données 
+# médicales #et administratives. La conséquence grave est d’interrompre les soins et d’empêcher les opérations urgentes, en effaçant l’accès aux dossiers médicaux contenant principalement des analyses biologiques, l’imagerie médicale, la consultation des
+# traitements et #les conclusions et analyses des spécialistes.
+# Les données médicales volées ont une valeur financière importante à la revente sur le black market.
 
-#Informations sur le projet :
+# Informations sur le projet :
 # Tâches à Réaliser
 
 ## Architecture Réseau Sécurisée
@@ -57,7 +59,7 @@
 
 Ces tâches sont cruciales pour la mise en place d'un réseau sécurisé à l'hôpital et pour garantir la confidentialité des données médicales.
 
--------------------------------------------
+# -------------------------------------------
 
 # Rôles
 
