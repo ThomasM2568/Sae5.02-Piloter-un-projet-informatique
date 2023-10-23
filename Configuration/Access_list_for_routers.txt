@@ -43,3 +43,49 @@ ip access-list extended WEB-SRV-ACL-REV
  permit ip 10.0.50.0 0.0.0.3 10.0.20.0 0.0.0.3
  permit ip 10.0.50.0 0.0.0.3 host 10.0.20.254
  permit ip 10.0.50.0 0.0.0.3 host 10.0.1.248
+
+
+
+
+ip access-list extended ADMIN-ACL
+ permit ip host 10.0.10.110 10.1.10.0 0.0.0.7
+ permit ip host 10.0.10.111 10.1.10.0 0.0.0.7
+ permit ip host 10.0.10.112 10.1.10.0 0.0.0.7
+ permit ip host 10.0.10.113 10.1.10.0 0.0.0.7
+ permit ip host 10.0.10.1 10.1.10.0 0.0.0.7
+ip access-list extended ADMIN-ACL-REV
+ permit ip 10.1.10.0 0.0.0.7 host 10.0.10.110
+ permit ip 10.1.10.0 0.0.0.7 host 10.0.10.111
+ permit ip 10.1.10.0 0.0.0.7 host 10.0.10.112
+ permit ip 10.1.10.0 0.0.0.7 host 10.0.10.113
+ permit ip 10.1.10.0 0.0.0.7 host 10.0.10.1
+ip access-list extended CARD-ACCESS-ACL
+ permit tcp 10.0.90.0 0.0.0.15 host 10.1.90.200 eq 1883
+ permit tcp 10.0.90.0 0.0.0.15 host 10.1.90.201 eq 1883
+ permit tcp 10.0.90.0 0.0.0.15 host 10.1.90.202 eq 1883
+ permit tcp 10.0.90.0 0.0.0.15 host 10.1.90.1 eq 1883
+ permit tcp 10.0.90.0 0.0.0.15 host 10.1.90.2 eq 1883
+ permit tcp 10.0.90.0 0.0.0.15 host 10.1.90.3 eq 1883
+ip access-list extended CARD-ACCESS-ACL-REV
+ permit tcp host 10.1.90.200 10.0.90.0 0.0.0.15 eq 1883
+ permit tcp host 10.1.90.201 10.0.90.0 0.0.0.15 eq 1883
+ permit tcp host 10.1.90.202 10.0.90.0 0.0.0.15 eq 1883
+ permit tcp host 10.1.90.1 10.0.90.0 0.0.0.15 eq 1883
+ permit tcp host 10.1.90.2 10.0.90.0 0.0.0.15 eq 1883
+ permit tcp host 10.1.90.3 10.0.90.0 0.0.0.15 eq 1883
+ip access-list extended CARD-ACCESS-ACL-SEC
+ permit tcp 10.0.90.0 0.0.0.15 host 10.0.90.200 eq 8883
+ permit tcp 10.0.90.0 0.0.0.15 host 10.0.90.201 eq 8883
+ permit tcp 10.0.90.0 0.0.0.15 host 10.0.90.202 eq 8883
+ permit tcp 10.0.90.0 0.0.0.15 host 10.0.90.1 eq 8883
+ permit tcp 10.0.90.0 0.0.0.15 host 10.0.90.2 eq 8883
+ permit tcp 10.0.90.0 0.0.0.15 host 10.0.90.3 eq 8883
+ip access-list extended DENY-IMPLICIT
+ deny   ip any any
+
+ip access-list extended WEB-SRV-ACL
+ permit ip 10.1.20.0 0.0.0.3 host 10.0.50.3
+ip access-list extended WEB-SRV-ACL-REV
+ permit ip 10.0.50.0 0.0.0.3 10.1.20.0 0.0.0.3
+ permit ip 10.0.50.0 0.0.0.3 host 10.1.20.254
+ permit ip 10.0.50.0 0.0.0.3 host 10.1.1.248
