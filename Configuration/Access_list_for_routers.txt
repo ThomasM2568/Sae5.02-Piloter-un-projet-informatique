@@ -76,6 +76,11 @@ permit ip 10.0.10.0 0.0.0.7 host 10.0.10.1
 
 
 
+ip access-list extended NETWORK-ACCESS
+permit ip 10.0.0.0 0.0.255.255.255 ip 10.0.0.0 0.0.255.255.255
+
+
+
 
 ip access-list extended DENY-IMPLICIT
 deny ip any any
