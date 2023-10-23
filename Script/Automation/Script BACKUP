@@ -1,0 +1,21 @@
+$src1 = "\\ServMainAKAT\PERSO"
+$src2 = "\\ServMainAKAT\EQUIPES"
+
+$dst = "C:\BACKUPS"
+
+while ($true){
+    $time = (Get-Date).ToString("yyyyMMdd-HHmm")
+    $backup_path = "$dst\$time"
+    New-Item -ItemType Directory -Path $backup_path
+
+    # Copiez les dossiers sources dans le répertoire de sauvegarde
+    Robocopy "$src1" "$backup_path\PERSO" /E /MIR
+    Robocopy "$src2" "$backup_path\EQUIPES" /E /MIR
+
+    $delete_before = (Get-Date).AddDays(-7)
+    
+    # Supprimez les dossiers de sauvegarde datant de plus de 7 jours
+    Get-ChildItem $dst | Where-Object {$_.LastWriteTime -lt $delete_before} | Remove-Item -Recurse
+
+    Start-Sleep -Seconds 3600
+}
