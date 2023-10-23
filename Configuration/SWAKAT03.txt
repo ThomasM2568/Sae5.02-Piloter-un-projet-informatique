@@ -9,12 +9,19 @@ hostname SWAKAT03
 boot-start-marker
 boot-end-marker
 !
+enable password SAE502akat
 !
+username admin password 0 SAE502akat
+username Kyllian privilege 15 secret 5 $1$zNVC$5WA5yFmxuAKlmLL0ugMni1
+username Arnaud privilege 15 secret 5 $1$89Q1$w715D1bqvCi1lniusRP8v0
+username Alexandre privilege 15 secret 5 $1$mzKR$OlL1fdXcmYM478sdl5uzO1
+username Thomas privilege 15 secret 5 $1$AXRD$NQQkXUd9HXn3AOltDwQn/.
 !
 !
 no aaa new-model
 switch 1 provision ws-c3750-24p
 system mtu routing 1500
+ip domain-name AKAT
 !
 !
 !
@@ -57,6 +64,7 @@ spanning-tree extend system-id
 !
 vlan internal allocation policy ascending
 !
+ip ssh version 2
 !
 !
 !
@@ -157,10 +165,34 @@ ip http secure-server
 !
 !
 !
+banner motd ^C
+                                          ,*.
+                                      .,*,.   #.
+                               ,/.             #,
+                         ,  ,,   *#(           .#       *
+                          ,          .#(        #,     //.
+                        .*               ((   (###(  .////.
+                     ,.                     #/.###.   ,/
+                    ,/                        (##,  ./.   .
+                     //                        ,##*/.      ,
+                       *//.                    ##//#     /,
+                        ,  .*///////        //(#   ,#(/.
+                        *       ///   .*///*,*#.     ##
+                        .//.    ./////      ,#      / #,
+                               ,           (#   */    #(
+                                 *  *////##/*   .,,,((.
+                                   (((##(
+                        (.    .###  ##/     ,(     ########(
+                       (.#.    .#  (       ,,#(       ,#
+                      (  .#.   .#/#       .,  (/      ,#
+                     (    .#.  .#  *#.   ,*    #(     ,#
+                    ##.   ,##/.###  (##/(#(    ###   ,###
+^C
 !
 line con 0
 line vty 0 4
- login
+ login local
+ transport input ssh
 line vty 5 15
  login
 !
