@@ -1,4 +1,4 @@
-version 15.1
+version 15.8
 service timestamps debug datetime msec
 service timestamps log datetime msec
 no service password-encryption
@@ -9,25 +9,38 @@ boot-start-marker
 boot-end-marker
 !
 !
+enable password SAE502akat
 !
 no aaa new-model
 !
-no ipv6 cef
-ip source-route
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain name AKAT
 ip cef
-!
-!
-!
-!
-!
+no ipv6 cef
 multilink bundle-name authenticated
 !
-crypto pki token default removal timeout 0
 !
 !
-license udi pid CISCO1941/K9 sn FCZ1715918B
+license udi pid CISCO1941/K9 sn FCZ1819C0RH
 !
 !
+username Kyllian privilege 15 secret 5 $1$aFjY$lsrAS23DREskRuuzuXHzS.
+username Arnaud privilege 15 secret 5 $1$M0wj$hMtoiGPHUdk6zuD6XP3sG1
+username Alexandre privilege 15 secret 5 $1$5qYg$rr4z22DZNQvMRjaaTz/tQ0
+username Thomas privilege 15 secret 5 $1$9iyd$LNHLpTQ9ydm72Y5hq3xKm/
+username admin password 0 SAE502akat
+!
+redundancy
 !
 !
 !
@@ -94,6 +107,7 @@ interface GigabitEthernet0/1
  ip address 10.1.1.249 255.255.255.0
  standby 1 ip 10.1.1.251
  standby 1 preempt
+ shutdown
  duplex auto
  speed auto
 !
@@ -110,10 +124,10 @@ interface FastEthernet0/1/0
  speed auto
 !
 router ospf 1
- redistribute connected
- redistribute static
+ redistribute connected subnets
+ redistribute static subnets
  network 10.1.1.0 0.0.0.255 area 0
- network 10.1.10.1 0.0.0.255 area 0
+ network 10.1.10.0 0.0.0.255 area 0
  network 10.1.20.0 0.0.0.255 area 0
  network 10.1.30.0 0.0.0.255 area 0
  network 10.1.40.0 0.0.0.255 area 0
@@ -126,13 +140,40 @@ ip forward-protocol nd
 no ip http server
 no ip http secure-server
 !
+ip ssh version 2
 !
 !
 !
 !
 control-plane
 !
-!
+banner motd ^C
+
+
+                                          ,*.
+                                      .,*,.   #.
+                               ,/.             #,
+                         ,  ,,   *#(           .#       *
+                          ,          .#(        #,     //.
+                        .*               ((   (###(  .////.
+                     ,.                     #/.###.   ,/
+                    ,/                        (##,  ./.   .
+                     //                        ,##*/.      ,
+                       *//.                    ##//#     /,
+                        ,  .*///////        //(#   ,#(/.
+                        *       ///   .*///*,*#.     ##
+                        .//.    ./////      ,#      / #,
+                               ,           (#   */    #(
+                                 *  *////##/*   .,,,((.
+                                   (((##(
+
+
+                        (.    .###  ##/     ,(     ########(
+                       (.#.    .#  (       ,,#(       ,#
+                      (  .#.   .#/#       .,  (/      ,#
+                     (    .#.  .#  *#.   ,*    #(     ,#
+                    ##.   ,##/.###  (##/(#(    ###   ,###
+^C
 !
 line con 0
 line aux 0
@@ -140,12 +181,12 @@ line 2
  no activation-character
  no exec
  transport preferred none
- transport input all
  transport output pad telnet rlogin lapb-ta mop udptn v120 ssh
  stopbits 1
 line vty 0 4
- login
- transport input all
+ login local
+ transport input ssh
 !
 scheduler allocate 20000 1000
+!
 end
