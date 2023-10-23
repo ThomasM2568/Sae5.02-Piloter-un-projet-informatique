@@ -6,6 +6,7 @@ import argparse
 
 #-------------------------------------------
 #              Argument parsing
+#
 #-------------------------------------------
 
 parser = argparse.ArgumentParser(description='Process some integers.')
