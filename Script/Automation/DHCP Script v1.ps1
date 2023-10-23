@@ -2,12 +2,12 @@
 Add-DhcpServerv4OptionDefinition -OptionID 3 -OptionName "Router" -OptionType IPADDRESS
 
 # Assignation de la route par défaut à chaque étendue
-Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.10.0" -Value "10.0.10.1"
-Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.20.0" -Value "10.0.20.1"
-Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.30.0" -Value "10.0.30.1"
-Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.40.0" -Value "10.0.40.1"
-Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.50.0" -Value "10.0.50.252"
-Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.60.0" -Value "10.0.60.1"
+Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.10.0" -Value "10.0.10.254"
+Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.20.0" -Value "10.0.20.254"
+Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.30.0" -Value "10.0.30.254"
+Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.40.0" -Value "10.0.40.254"
+Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.50.0" -Value "10.0.50.254"
+Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.60.0" -Value "10.0.60.254"
 
 # Ajoute une étendue DHCP nommée "Administration" pour des adresses de gestion
 Add-DhcpServerv4Scope -Name "Administration" -StartRange "10.0.10.10" -EndRange "10.0.10.200" -SubnetMask "255.255.255.0" -State Active
