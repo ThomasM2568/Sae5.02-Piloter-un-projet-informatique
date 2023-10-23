@@ -82,5 +82,89 @@ permit ip 10.0.0.0 0.0.255.255.255 ip 10.0.0.0 0.0.255.255.255
 
 
 
+
+
+
+
+
+ip access-list extended DNS-ACL-DIST
+permit udp 10.0.0.0 0.0.255.255 ip 10.1.50.0 0.0.0.3 eq 53
+
+ip access-list extended DNS-ACL-DIST-REV
+permit udp 10.1.50.0 0.0.0.3 eq 53 10.0.0.0 0.0.255.255
+
+
+
+ip access-list extended CARD-ACCESS-ACL-DIST
+permit tcp 10.0.90.10 0.0.0.15 host 10.1.90.200 eq 1883
+permit tcp 10.0.90.10 0.0.0.15 host 10.1.90.201 eq 1883
+permit tcp 10.0.90.10 0.0.0.15 host 10.1.90.202 eq 1883
+permit tcp 10.0.90.10 0.0.0.15 host 10.1.90.1 eq 1883
+permit tcp 10.0.90.10 0.0.0.15 host 10.1.90.2 eq 1883
+permit tcp 10.0.90.10 0.0.0.15 host 10.1.90.3 eq 1883
+
+ip access-list extended CARD-ACCESS-ACL-DIST-REV
+permit tcp host 10.1.90.200 eq 1883 10.0.90.10 0.0.0.15
+permit tcp host 10.1.90.201 eq 1883 10.0.90.10 0.0.0.15
+permit tcp host 10.1.90.202 eq 1883 10.0.90.10 0.0.0.15
+permit tcp host 10.1.90.1 eq 1883 10.0.90.10 0.0.0.15
+permit tcp host 10.1.90.2 eq 1883 10.0.90.10 0.0.0.15
+permit tcp host 10.1.90.3 eq 1883 10.0.90.10 0.0.0.15
+
+
+
+ip access-list extended CARD-ACCESS-ACL-SEC-DIST
+permit tcp 10.0.90.10 0.0.0.15 host 10.1.90.200 eq 8883
+permit tcp 10.0.90.10 0.0.0.15 host 10.1.90.201 eq 8883
+permit tcp 10.0.90.10 0.0.0.15 host 10.1.90.202 eq 8883
+permit tcp 10.0.90.10 0.0.0.15 host 10.1.90.1 eq 8883
+permit tcp 10.0.90.10 0.0.0.15 host 10.1.90.2 eq 8883
+permit tcp 10.0.90.10 0.0.0.15 host 10.1.90.3 eq 8883
+
+ip access-list extended CARD-ACCESS-ACL-SEC-DIST-REV
+permit tcp host 10.1.90.200 eq 8883 10.0.90.10 0.0.0.15
+permit tcp host 10.1.90.201 eq 8883 10.0.90.10 0.0.0.15
+permit tcp host 10.1.90.202 eq 8883 10.0.90.10 0.0.0.15
+permit tcp host 10.1.90.1 eq 8883 10.0.90.10 0.0.0.15
+permit tcp host 10.1.90.2 eq 8883 10.0.90.10 0.0.0.15
+permit tcp host 10.1.90.3 eq 8883 10.0.90.10 0.0.0.15
+
+
+
+
+ip access-list extended WEB-SRV-ACL-DIST
+permit ip 10.0.20.0 0.0.0.3 ip 10.1.50.0 0.0.0.3
+permit ip 10.0.20.0 0.0.0.3 host 10.1.50.3
+permit host 10.0.20.254 ip 10.1.50.0 0.0.0.3
+permit host 10.0.20.254 host 10.1.50.3
+permit host 10.0.1.248 ip 10.1.50.0 0.0.0.3
+permit host 10.0.1.248 host 10.1.50.3
+
+ip access-list extended WEB-SRV-ACL-DIST-REV
+permit ip 10.1.50.0 0.0.0.3 10.0.20.0 0.0.0.3
+permit host 10.1.50.3 10.0.20.0 0.0.0.3
+permit ip 10.1.50.0 0.0.0.3 host 10.0.20.254
+permit host 10.1.50.3 host 10.0.20.254
+permit ip 10.1.50.0 0.0.0.3 host 10.0.1.248
+permit host 10.1.50.3 host 10.0.1.248
+
+
+
+
+ip access-list extended ADMIN-ACL-DIST
+permit host 10.0.10.110 ip 10.1.10.0 0.0.0.7
+permit host 10.0.10.111 ip 10.1.10.0 0.0.0.7
+permit host 10.0.10.112 ip 10.1.10.0 0.0.0.7
+permit host 10.0.10.113 ip 10.1.10.0 0.0.0.7
+permit host 10.0.10.1 ip 10.1.10.0 0.0.0.7
+
+ip access-list extended ADMIN-ACL-DIST-REV
+permit ip 10.1.10.0 0.0.0.7 host 10.0.10.110
+permit ip 10.1.10.0 0.0.0.7 host 10.0.10.111
+permit ip
+
+
+
+
 ip access-list extended DENY-IMPLICIT
 deny ip any any
