@@ -9,12 +9,19 @@ hostname SWAKAT02
 boot-start-marker
 boot-end-marker
 !
+enable password SAE502akat
 !
+username Kyllian privilege 15 secret 5 $1$NfZ/$9f84cu.oR1URSUE6NCLBX/
+username Arnaud privilege 15 secret 5 $1$hA6D$L3yHC9MzT/7MAbBeHlsj/0
+username Alexandre privilege 15 secret 5 $1$7d9B$nLumrwxopGWNayOinO8lf.
+username Thomas privilege 15 secret 5 $1$2H7T$Sgvam7aKDJfqhOIZD.zwi.
+username admin password 0 SAE502akat
 !
 !
 no aaa new-model
 switch 1 provision ws-c3750v2-24ts
 system mtu routing 1500
+ip domain-name AKAT
 !
 !
 !
@@ -57,6 +64,7 @@ spanning-tree vlan 1,10,20,30,40,50,60,90 priority 28672
 !
 vlan internal allocation policy ascending
 !
+ip ssh version 2
 !
 !
 !
@@ -115,6 +123,8 @@ interface FastEthernet1/0/21
 interface FastEthernet1/0/22
 !
 interface FastEthernet1/0/23
+ switchport access vlan 90
+ switchport mode access
 !
 interface FastEthernet1/0/24
 !
@@ -154,10 +164,34 @@ ip http secure-server
 ip sla enable reaction-alerts
 !
 !
+banner motd ^C
+                                          ,*.
+                                      .,*,.   #.
+                               ,/.             #,
+                         ,  ,,   *#(           .#       *
+                          ,          .#(        #,     //.
+                        .*               ((   (###(  .////.
+                     ,.                     #/.###.   ,/
+                    ,/                        (##,  ./.   .
+                     //                        ,##*/.      ,
+                       *//.                    ##//#     /,
+                        ,  .*///////        //(#   ,#(/.
+                        *       ///   .*///*,*#.     ##
+                        .//.    ./////      ,#      / #,
+                               ,           (#   */    #(
+                                 *  *////##/*   .,,,((.
+                                   (((##(
+                        (.    .###  ##/     ,(     ########(
+                       (.#.    .#  (       ,,#(       ,#
+                      (  .#.   .#/#       .,  (/      ,#
+                     (    .#.  .#  *#.   ,*    #(     ,#
+                    ##.   ,##/.###  (##/(#(    ###   ,###
+^C
 !
 line con 0
 line vty 0 4
- login
+ login local
+ transport input ssh
 line vty 5 15
  login
 !
