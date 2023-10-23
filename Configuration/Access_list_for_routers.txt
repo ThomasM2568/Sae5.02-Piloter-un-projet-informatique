@@ -28,13 +28,13 @@ permit tcp 10.0.90.10 0.0.0.15 host 10.0.90.1 eq 8883
 permit tcp 10.0.90.10 0.0.0.15 host 10.0.90.2 eq 8883
 permit tcp 10.0.90.10 0.0.0.15 host 10.0.90.3 eq 8883
 
-ip access-list extended CARD-ACCESS-ACL-SEC-REV
-permit tcp host 10.0.90.200 eq 8883 10.0.90.10 0.0.0.15
-permit tcp host 10.0.90.201 eq 8883 10.0.90.10 0.0.0.15
-permit tcp host 10.0.90.202 eq 8883 10.0.90.10 0.0.0.15
-permit tcp host 10.0.90.1 eq 8883 10.0.90.10 0.0.0.15
-permit tcp host 10.0.90.2 eq 8883 10.0.90.10 0.0.0.15
-permit tcp host 10.0.90.3 eq 8883 10.0.90.10 0.0.0.15
+ip access-list extended CARD-ACCESS-ACL-REV
+permit tcp 10.0.90.200 0.0.0.0 10.0.90.10 0.0.0.15 eq 1883
+permit tcp 10.0.90.201 0.0.0.0 10.0.90.10 0.0.0.15 eq 1883
+permit tcp 10.0.90.202 0.0.0.0 10.0.90.10 0.0.0.15 eq 1883
+permit tcp 10.0.90.1 0.0.0.0 10.0.90.10 0.0.0.15 eq 1883
+permit tcp 10.0.90.2 0.0.0.0 10.0.90.10 0.0.0.15 eq 1883
+permit tcp 10.0.90.3 0.0.0.0 10.0.90.10 0.0.0.15 eq 1883
 
 ip access-list extended WEB-SRV-ACL
 permit ip 10.0.20.0 0.0.0.3 ip 10.0.50.0 0.0.0.3
