@@ -9,6 +9,7 @@ boot-start-marker
 boot-end-marker
 !
 !
+enable password SAE502akat
 !
 no aaa new-model
 !
@@ -21,24 +22,31 @@ ip cef
 !
 !
 !
+ip domain name AKAT
 !
 multilink bundle-name authenticated
 !
 crypto pki token default removal timeout 0
 !
 !
-license udi pid CISCO1941/K9 sn FCZ1637C38G
+license udi pid CISCO1941/K9 sn FCZ1747C4B2
 license accept end user agreement
 license boot module c1900 technology-package securityk9
 license boot module c1900 technology-package datak9
 !
 !
+username Kyllian privilege 15 secret 5 $1$1pVD$jYpzaesCWj0LTrsM7GxaJ1
+username Arnaud privilege 15 secret 5 $1$fMUp$.KGC0g7FnsKPDYAsQHXA5.
+username Alexandre privilege 15 secret 5 $1$LAZ3$xmK3r5d4gpqn/4Glyd1GY.
+username Thomas privilege 15 secret 5 $1$mEjO$Cd03zb9Yz.vfO1tj3AY.D1
+username admin password 0 SAE502akat
 !
 redundancy
 !
 !
 !
 !
+ip ssh version 2
 !
 !
 !
@@ -113,6 +121,7 @@ interface GigabitEthernet0/1
  standby 1 ip 10.1.1.251
  standby 1 priority 110
  standby 1 preempt
+ shutdown
  duplex auto
  speed auto
 !
@@ -132,7 +141,7 @@ router ospf 1
  redistribute connected
  redistribute static
  network 10.1.1.0 0.0.0.255 area 0
- network 10.1.10.1 0.0.0.255 area 0
+ network 10.1.10.0 0.0.0.255 area 0
  network 10.1.20.0 0.0.0.255 area 0
  network 10.1.30.0 0.0.0.255 area 0
  network 10.1.40.0 0.0.0.255 area 0
@@ -155,6 +164,34 @@ no ip http secure-server
 control-plane
 !
 !
+banner motd ^C
+
+
+                                          ,*.
+                                      .,*,.   #.
+                               ,/.             #,
+                         ,  ,,   *#(           .#       *
+                          ,          .#(        #,     //.
+                        .*               ((   (###(  .////.
+                     ,.                     #/.###.   ,/
+                    ,/                        (##,  ./.   .
+                     //                        ,##*/.      ,
+                       *//.                    ##//#     /,
+                        ,  .*///////        //(#   ,#(/.
+                        *       ///   .*///*,*#.     ##
+                        .//.    ./////      ,#      / #,
+                               ,           (#   */    #(
+                                 *  *////##/*   .,,,((.
+                                   (((##(
+
+
+
+                        (.    .###  ##/     ,(     ########(
+                       (.#.    .#  (       ,,#(       ,#
+                      (  .#.   .#/#       .,  (/      ,#
+                     (    .#.  .#  *#.   ,*    #(     ,#
+                    ##.   ,##/.###  (##/(#(    ###   ,###
+^C
 !
 line con 0
 line aux 0
@@ -166,8 +203,9 @@ line 2
  transport output lat pad telnet rlogin lapb-ta mop udptn v120 ssh
  stopbits 1
 line vty 0 4
- login
- transport input all
+ login local
+ transport input ssh
 !
 scheduler allocate 20000 1000
 end
+
