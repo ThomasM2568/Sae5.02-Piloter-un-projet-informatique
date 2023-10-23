@@ -9,6 +9,7 @@ boot-start-marker
 boot-end-marker
 !
 !
+enable password SAE502akat
 !
 no aaa new-model
 !
@@ -21,6 +22,7 @@ ip cef
 !
 !
 !
+ip domain name AKAT
 !
 multilink bundle-name authenticated
 !
@@ -33,12 +35,19 @@ license boot module c1900 technology-package securityk9
 license boot module c1900 technology-package datak9
 !
 !
+username Kyllian privilege 15 secret 5 $1$oIPE$oMjZZNsA531rUq82z1bqG.
+username Arnaud privilege 15 secret 5 $1$9lb9$DQJREuBztWjFTnUva/4wu0
+username Alexandre privilege 15 secret 5 $1$F.t3$hPgE9T8z.c5CxwIEIre5S1
+username Thomas privilege 15 secret 5 $1$UU.D$vCZcCwFxMyEaGQchPChqj.
+username test password 0 test
+username admin password 0 SAE502akat
 !
 redundancy
 !
 !
 !
 !
+ip ssh version 2
 !
 !
 !
@@ -60,6 +69,7 @@ interface GigabitEthernet0/0.10
  encapsulation dot1Q 10
  ip address 10.0.10.2 255.255.255.0
  ip helper-address 10.0.50.1
+ ip helper-address 10.0.50.2
  standby 10 ip 10.0.10.254
  standby 10 priority 110
  standby 10 preempt
@@ -68,6 +78,7 @@ interface GigabitEthernet0/0.20
  encapsulation dot1Q 20
  ip address 10.0.20.253 255.255.255.0
  ip helper-address 10.0.50.1
+ ip helper-address 10.0.50.2
  standby 20 ip 10.0.20.254
  standby 20 priority 110
  standby 20 preempt
@@ -76,17 +87,21 @@ interface GigabitEthernet0/0.30
  encapsulation dot1Q 30
  ip address 10.0.30.253 255.255.255.0
  ip helper-address 10.0.50.1
+ ip helper-address 10.0.50.2
  standby 30 ip 10.0.30.254
  standby 30 priority 110
  standby 30 preempt
 !
 interface GigabitEthernet0/0.40
  ip helper-address 10.0.50.1
+ ip helper-address 10.0.50.2
+ shutdown
 !
 interface GigabitEthernet0/0.50
  encapsulation dot1Q 50
  ip address 10.0.50.253 255.255.255.0
  ip helper-address 10.0.50.1
+ ip helper-address 10.0.50.2
  standby 50 ip 10.0.50.254
  standby 50 priority 110
  standby 50 preempt
@@ -95,6 +110,7 @@ interface GigabitEthernet0/0.60
  encapsulation dot1Q 60
  ip address 10.0.60.253 255.255.255.0
  ip helper-address 10.0.50.1
+ ip helper-address 10.0.50.2
  standby 60 ip 10.0.60.254
  standby 60 priority 110
  standby 60 preempt
@@ -103,7 +119,8 @@ interface GigabitEthernet0/0.90
  encapsulation dot1Q 90
  ip address 10.0.90.253 255.255.255.0
  ip helper-address 10.0.50.1
- standby 90 ip 10.0.90.254
+ ip helper-address 10.0.50.2
+ standby 90 ip 10.0.90.251
  standby 90 priority 110
  standby 90 preempt
 !
@@ -155,6 +172,33 @@ no ip http secure-server
 control-plane
 !
 !
+banner motd ^C
+
+
+                                          ,*.
+                                      .,*,.   #.
+                               ,/.             #,
+                         ,  ,,   *#(           .#       *
+                          ,          .#(        #,     //.
+                        .*               ((   (###(  .////.
+                     ,.                     #/.###.   ,/
+                    ,/                        (##,  ./.   .
+                     //                        ,##*/.      ,
+                       *//.                    ##//#     /,
+                        ,  .*///////        //(#   ,#(/.
+                        *       ///   .*///*,*#.     ##
+                        .//.    ./////      ,#      / #,
+                               ,           (#   */    #(
+                                 *  *////##/*   .,,,((.
+                                   (((##(
+
+
+                        (.    .###  ##/     ,(     ########(
+                       (.#.    .#  (       ,,#(       ,#
+                      (  .#.   .#/#       .,  (/      ,#
+                     (    .#.  .#  *#.   ,*    #(     ,#
+                    ##.   ,##/.###  (##/(#(    ###   ,###
+^C
 !
 line con 0
 line aux 0
@@ -166,8 +210,11 @@ line 2
  transport output lat pad telnet rlogin lapb-ta mop udptn v120 ssh
  stopbits 1
 line vty 0 4
- login
- transport input all
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
 !
 scheduler allocate 20000 1000
 end
