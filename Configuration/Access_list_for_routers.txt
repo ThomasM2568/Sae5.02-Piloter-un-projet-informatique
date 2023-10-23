@@ -169,10 +169,10 @@ permit ip
 
 
 
-ip access-list extended NETWORK-ACCESS
+ip access-list extended NETWORK-ACCESS-DIST
 permit ip 10.0.0.0 0.0.255.255.255 ip 10.1.0.0 0.0.255.255.255
 
-ip access-list extended NETWORK-ACCESS-REV
+ip access-list extended NETWORK-ACCESS-REV-DIST
 permit ip 10.1.0.0 0.0.255.255.255 ip 10.0.0.0 0.0.255.255.255
 
 
