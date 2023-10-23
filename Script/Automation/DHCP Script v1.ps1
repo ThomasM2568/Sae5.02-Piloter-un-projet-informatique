@@ -6,7 +6,7 @@ Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.10.0" -Value "10.0.10.1"
 Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.20.0" -Value "10.0.20.1"
 Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.30.0" -Value "10.0.30.1"
 Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.40.0" -Value "10.0.40.1"
-Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.50.0" -Value "10.0.50.1"
+Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.50.0" -Value "10.0.50.252"
 Add-DhcpServerv4OptionValue -OptionID 3 -ScopeId "10.0.60.0" -Value "10.0.60.1"
 
 # Ajoute une étendue DHCP nommée "Administration" pour des adresses de gestion
