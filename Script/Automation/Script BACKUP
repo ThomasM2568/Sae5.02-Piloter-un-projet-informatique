@@ -1,5 +1,6 @@
 $src1 = "\\ServMainAKAT\PERSO"
 $src2 = "\\ServMainAKAT\EQUIPES"
+$src3 = "\\ServMainAKAT\BDD-Script"
 
 $dst = "C:\BACKUPS"
 
@@ -11,6 +12,7 @@ while ($true){
     # Copiez les dossiers sources dans le répertoire de sauvegarde
     Robocopy "$src1" "$backup_path\PERSO" /E /MIR
     Robocopy "$src2" "$backup_path\EQUIPES" /E /MIR
+    Robocopy "$src3" "$backup_path\BDD-Script" /E /MIR
 
     $delete_before = (Get-Date).AddDays(-7)
     
