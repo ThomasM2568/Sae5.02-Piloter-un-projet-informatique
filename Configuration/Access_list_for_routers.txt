@@ -26,7 +26,7 @@ permit ip 10.0.90.0 0.0.0.255 host 10.1.50.5
 deny ip any any
 
 
-
+ip access-group AKAT-ACL in
 
 
 
