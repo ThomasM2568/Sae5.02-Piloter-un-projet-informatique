@@ -30,7 +30,7 @@ permet host 10.0.50.7 ip 10.0.90.0 0.0.0.255
 permet host 10.0.50.8 ip 10.0.90.0 0.0.0.255
 
 !--- Deny all
-deny   ip any any
+deny ip any any
 
 
 
