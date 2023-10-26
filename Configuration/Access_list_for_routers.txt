@@ -1,3 +1,60 @@
+ip access-list extended AKAT-ACL
+
+!--- Deny all subnets to admin subnet
+deny ip 10.0.0.0 0.0.255.255 ip 10.1.10.0 0.0.0.255
+deny ip 10.0.0.0 0.0.255.255 ip 10.0.10.0 0.0.0.255
+
+!--- All subnets to webserver
+permit ip 10.0.0.0 0.0.255.255 ip 10.0.50.0 0.0.0.3
+permit ip 10.0.50.0 0.0.0.3 ip 10.0.0.0 0.0.255.255
+
+!--- Local admin subnet to remote admin subnet
+permit ip 10.0.10.0 0.0.0.255 ip 10.1.10.0 0.0.0.255
+
+!--- All subnets to all local subnets
+permit ip 10.0.0.0 0.0.255.255 ip 10.1.0.0 0.0.255.255
+
+!--- All subnets to all remote subnets
+permit ip 10.0.0.0 0.0.255.255 ip 10.1.0.0 0.0.255.255
+
+!--- IOT subnet to database
+permit ip 10.0.90.0 0.0.0.255 host 10.0.50.3
+permit ip 10.0.90.0 0.0.0.255 host 10.0.50.4
+permit ip 10.0.90.0 0.0.0.255 host 10.0.50.5
+permit ip 10.0.90.0 0.0.0.255 host 10.0.50.6
+permit ip 10.0.90.0 0.0.0.255 host 10.0.50.7
+permit ip 10.0.90.0 0.0.0.255 host 10.0.50.8
+permit ip 10.0.90.0 0.0.0.255 host 10.1.50.3
+permit ip 10.0.90.0 0.0.0.255 host 10.1.50.4
+permit ip 10.0.90.0 0.0.0.255 host 10.1.50.5
+
+!--- Deny all
+deny   ip any any
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ip access-list extended ADMIN-ACL
  permit ip host 10.0.10.110 10.0.10.0 0.0.0.7
  permit ip host 10.0.10.111 10.0.10.0 0.0.0.7
