@@ -10,6 +10,16 @@ deny ip 10.0.0.0 0.0.255.255 10.0.10.0 0.0.0.255
 !--- All subnets to server
 permit ip 10.0.0.0 0.0.255.255 10.0.50.0 0.0.0.3
 permit ip 10.0.50.0 0.0.0.3 10.0.0.0 0.0.255.255
+permit udp any 10.0.50.0 0.0.0.3
+permit udp 10.0.50.0 0.0.0.3 10.0.0.0 0.0.255.255
+permit udp any host 10.0.50.1 eq 67
+permit udp host 10.0.50.1 eq 67 any
+permit udp any host 10.0.50.2 eq 67
+permit udp host 10.0.50.2 eq 67 any
+permit udp any host 10.0.50.1 eq 68
+permit udp host 10.0.50.1 eq 68 any
+permit udp any host 10.0.50.2 eq 68
+permit udp host 10.0.50.2 eq 68 any
 
 !--- IOT subnet to database
 permit ip 10.0.90.0 0.0.0.255 host 10.0.50.3
@@ -27,6 +37,8 @@ deny ip any any
 
 
 ip access-group AKAT-ACL in
+
+no ip access-group AKAT-ACL in
 
 
 
