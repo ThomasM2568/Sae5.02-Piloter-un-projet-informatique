@@ -27,14 +27,22 @@ def MariaDB_obj(yml_file):
         return ""
 
 
-def check_card(fichier_csv,MariaDB_connector):
+def check_MariaDB_connection(fichier_csv,MariaDB_connector):
     fichier_csv = config['database']['dbname']
 
     if(MariaDB_connector.is_connected()):
+        return True
+    else:
+        return False
+
+
+
+def get_table(MariaDB_connector,database_table_name=""):
+    if(database_table_name!=""):
         print("toto")
 
-
-
+    else:
+        return ""
 
 
 #-------------------------------------------
