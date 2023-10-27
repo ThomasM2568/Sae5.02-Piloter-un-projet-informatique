@@ -20,6 +20,8 @@ permit udp any host 10.0.50.1 eq 68
 permit udp host 10.0.50.1 eq 68 any
 permit udp any host 10.0.50.2 eq 68
 permit udp host 10.0.50.2 eq 68 any
+permit any 255.255.255.255
+permit 255.255.255.255 any
 
 !--- IOT subnet to database
 permit ip 10.0.90.0 0.0.0.255 host 10.0.50.3
