@@ -1,0 +1,36 @@
+import csv
+import random
+import datetime
+
+# Paramètres CSV
+csv_file = "log.csv"
+lieu = "salle-02"
+
+# Fonction pour générer un horodatage aléatoire entre 8h45 et 9h30
+def generate_random_timestamp():
+    start_time = datetime.datetime.now().replace(hour=8, minute=45, second=0, microsecond=0)
+    end_time = start_time.replace(hour=9, minute=30)
+    random_time = start_time + datetime.timedelta(seconds=random.randint(0, (end_time - start_time).seconds))
+    return random_time.strftime("%Y-%m-%d %H:%M:%S")
+
+# Fonction pour générer un identifiant de badge similaire à une carte étudiante
+def generate_student_card_format():
+    # Vous pouvez personnaliser le format ici
+    card_number = random.randint(10000, 99999)
+    return f"STD-{card_number}"
+
+# Générer deux identifiants de badge similaires à une carte étudiante
+badge_id_1 = generate_student_card_format()
+badge_id_2 = generate_student_card_format()
+
+# Générer deux horodatages différents entre 8h45 et 9h30
+timestamp_1 = generate_random_timestamp()
+timestamp_2 = generate_random_timestamp()
+
+# Enregistrement des données dans le fichier CSV
+with open(csv_file, mode="a", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerow([timestamp_1, badge_id_1, lieu])
+    writer.writerow([timestamp_2, badge_id_2, lieu])
+    print(f"Données enregistrées : {timestamp_1}, {badge_id_1}, {lieu}")
+    print(f"Données enregistrées : {timestamp_2}, {badge_id_2}, {lieu}")
