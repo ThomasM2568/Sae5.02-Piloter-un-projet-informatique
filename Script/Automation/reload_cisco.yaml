@@ -1,0 +1,16 @@
+---
+- hosts: routeurs_cisco
+  gather_facts: no
+  tasks:
+    - name: reload Cisco Routers
+      ios_command:
+        commands:
+          - reload
+      register: result
+    - name: Action
+      wait_for:
+        host: "{{ inventory_hostname }}"
+        port: 22
+        delay: 300
+        state: started
+      when: "'Please confirm' in result.stdout_lines | join(' ')"
