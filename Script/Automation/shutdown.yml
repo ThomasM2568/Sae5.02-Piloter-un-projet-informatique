@@ -1,3 +1,4 @@
+---
 - hosts: machines_a_eteindre
   become: yes
   tasks:
