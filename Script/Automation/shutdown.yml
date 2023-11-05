@@ -1,0 +1,5 @@
+- hosts: machines_a_eteindre
+  become: yes
+  tasks:
+    - name: Shutdown
+      command: shutdown -h 0
